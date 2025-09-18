@@ -31,11 +31,12 @@ if "selected_agent_aliases" not in st.session_state:
     st.session_state.selected_agent_aliases = {}
 
 def initialize_bedrock_clients():
+    currentRegion = "us-east-1"
     """Initialize and return the Bedrock clients."""
     # Client for agent management operations
     bedrock_agent = boto3.client(
         service_name='bedrock-agent',
-        region_name='us-east-1',
+        region_name=currentRegion,
         aws_access_key_id=os.getenv('AWS_ACCESS_KEY_ID'),
         aws_secret_access_key=os.getenv('AWS_SECRET_ACCESS_KEY')
     )
@@ -43,7 +44,7 @@ def initialize_bedrock_clients():
     # Client for agent runtime operations
     bedrock_agent_runtime = boto3.client(
         service_name='bedrock-agent-runtime',
-        region_name='us-east-1',
+        region_name=currentRegion,
         aws_access_key_id=os.getenv('AWS_ACCESS_KEY_ID'),
         aws_secret_access_key=os.getenv('AWS_SECRET_ACCESS_KEY')
     )
